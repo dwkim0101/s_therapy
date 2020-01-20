@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:ui';
 
 import 'package:audioplayers/audioplayers.dart';
 import 'package:bloc/bloc.dart';
@@ -132,7 +133,7 @@ class _MusicControlPageState extends State<MusicControlPage> {
                 alignment: FractionalOffset(0.5, 0.1),
                 child: Text(
                   getTitle(modeChangeState),
-                  style: TextStyle(color: Colors.white, fontSize: 30),
+                  style: TextStyle(color: colorSet(modeChangeState), fontSize: 30),
                 ),
               ),
               Align(
@@ -157,6 +158,16 @@ class _MusicControlPageState extends State<MusicControlPage> {
     if (state == "F") title = "Focus Mode";
     if (state == "R") title = "Recovery Mode";
     return title;
+  }
+
+  Color colorSet(state){
+    Color color;
+    if (state == "A") color = Colors.white;
+    if (state == "D") color = Color.fromRGBO(148, 96, 221, 0.64);
+    if (state == "H") color = Color.fromRGBO(6, 111, 75, 0.64);
+    if (state == "F") color = Colors.white;
+    if (state == "R") color = Colors.white;
+    return color;
   }
 
   void processUtilButtonEvent(context, state) {
